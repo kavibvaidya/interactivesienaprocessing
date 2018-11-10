@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Processing for the Siena process</title>
+    <script type="text/javascript">
+      function make_functioning(){
+        var status = document.getElementById("status");
+        console.log(status)
+        status.style.backgroundColor = "green";
+      }
+    </script>
+  </head>
+  <body>
+    <p style="color:green;"> Please input the files here</p>
+    <form method="post" enctype="multipart/form-data" onsubmit="make_functioning()">
+      {%csrf_token%}
+      <input type="file" name="File1" accept="file_extension/.nii" id="file1">
+      <p> </p>
+      <input type="file" name="File2" accept="file_extension/.nii" id="file2">
+      <p></p>
+      <input type="submit" value="Submit" onclick="make_functioning()">
+
+    </form>
+
+    <div id="status" style="width:30px;height:30px;border:1px solid #000;margin-top:30px;background-color:grey;"></div>
+
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var isFinished = false;
+      var minutes = 0.09;
+      var seconds = minutes * 60;
+      //window.onload = getupdates();
+      window.setInterval(getupdates, seconds*1000);
+
+      function getupdates(){
+        console.log("we are in the function ", {{dirname}} );
+          $.ajax({
+            type: "POST",
+            url: '',
+            beforeSend: function(xhr){xhr.setRequestHeader('X-CSRFToken', '{{csrf_token}}');},
+            dataType: 'json',
+            data: {
+              output : "{{output}}",
+              file1: "{{file1}}",
+              file2: "{{file2}}",
+
+            },
+            complete: function(req){
+            console.log(req.responseText);
+            document.getElementById("console").innerHTML = req.responseText;
+            },
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <p style="color:blue"> You have reached the updates place</p>
+    <p id="console"></p>
+  </body>
+</html>
