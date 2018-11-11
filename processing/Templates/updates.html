@@ -26,6 +26,10 @@
             },
             complete: function(req){
             console.log(req.responseText);
+            line = req.responseText.split('\n')
+            if (line[line.length] == "Kavi") {
+                console.log("finished processing <detected class=""></detected>")
+            }
             document.getElementById("console").innerHTML = req.responseText;
             },
           });
