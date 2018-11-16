@@ -37,13 +37,16 @@ class HomePage(TemplateView):
             return render(request,"updates.html",  {"output": output, "file1": file1 , "file2": file2, "state": "Kavi"})
             #return HttpResponseRedirect("updates")
         else:
-            #TODO: WE WILL NOW READ THE FILE THAT IS BEING PROCESSED.
+            # NOTE:  We will read this in nthe javascript and send a finished
+            # that will then compress and send over the file.
             data = request.POST
             with open("Data/" + data["output"] + "/output.txt") as f:
                 state = f.read()
             return HttpResponse(state)
     def get(self, request):
         return render(request, "homepage.html")
+
+# TODO:  WE have to make a url that will handle compression and sending the data over
 
 
 def process(file1, file2, output):

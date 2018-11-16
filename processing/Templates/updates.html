@@ -8,9 +8,16 @@
       var isFinished = false;
       var minutes = 0.09;
       var seconds = minutes * 60;
+      var finished = false;
       //window.onload = getupdates();
       window.setInterval(getupdates, seconds*1000);
+      window.setInterval(checkDownload, seconds*1000)
 
+      function checkDownload(){
+        if (finished){
+          // TODO: Send an ajax request that will compile the thing and send over.
+        }
+      }
       function getupdates(){
         console.log("we are in the function ", {{dirname}} );
           $.ajax({
@@ -22,15 +29,26 @@
               output : "{{output}}",
               file1: "{{file1}}",
               file2: "{{file2}}",
-
+              finished: finished,
             },
             complete: function(req){
             console.log(req.responseText);
             line = req.responseText.split('\n')
-            if (line[line.length] == "Kavi") {
-                console.log("finished processing <detected class=""></detected>")
+            console.log(line)
+            if (line.indexOf("We have reached an arbitary point") > -1) {
+              finished = true;
+              window.clearInterval();
             }
-            document.getElementById("console").innerHTML = req.responseText;
+            text = ""
+            console.log(line);
+            for(var i = 0; i<line.length; i++) {
+              text += "<p>" + line[i] + "\n" + "</p>";
+              if (i == line.length -1){
+                document.getElementById("console").innerHTML = text;
+
+              }
+            }
+
             },
           });
       }
@@ -38,6 +56,7 @@
   </head>
   <body>
     <p style="color:blue"> You have reached the updates place</p>
-    <p id="console"></p>
+    <div id="console"></div>
+    <p> </p>
   </body>
 </html>
