@@ -1,0 +1,54 @@
+-----------------------------------------------------------------------
+
+ SIENA - Structural Image Evaluation, using Normalisation, of Atrophy
+ part of FSL www.fmrib.ox.ac.uk/fsl
+ running longitudinal atrophy measurement: siena version 2.6
+ siena 
+
+----------  extract brain  --------------------------------------------
+
+----------  register brains and skulls  -------------------------------
+(do not worry about histogram warnings)
+
+----------  produce valid masks  --------------------------------------
+
+----------  change analysis  ------------------------------------------
+corr1=.5756172625 corr2=.5277738479 corr=.5516955552
+
+/usr/local/fsl/bin/flirt -o B_halfwayto_A -applyisoxfm 1 -paddingsize 0 -init B_halfwayto_A.mat -ref B -in B
+/usr/local/fsl/bin/flirt -o A_halfwayto_B -applyisoxfm 1 -paddingsize 0 -init A_halfwayto_B.mat -ref B -in A
+/usr/local/fsl/bin/flirt -o B_halfwayto_A_mask -applyisoxfm 1 -paddingsize 0 -init B_halfwayto_A.mat -ref B -in B_brain_mask
+/usr/local/fsl/bin/flirt -o A_halfwayto_B_mask -applyisoxfm 1 -paddingsize 0 -init A_halfwayto_B.mat -ref B -in A_brain_mask
+/usr/local/fsl/bin/flirt -o B_halfwayto_A_valid_mask -applyisoxfm 1 -paddingsize 0 -init B_halfwayto_A.mat -ref B -in B_valid_mask_with_A
+reading and combining transformed masks
+final image dimensions = 200 200 176, voxel volume = 1mm^3, voxel area = 1mm^2
+dilating/eroding combined mask
+reading transformed images and applying mask
+saving image 1 to disk prior to segmentation
+/usr/local/fsl/bin/fast   B_halfwayto_A_brain > B_halfwayto_A_brain.vol 2>&1
+finding brain edges
+finding flow
+AREA  78638 mm^2
+VOLC  5527.62 mm^3
+RATIO 0.0702919 mm
+PBVC  1.16339 %
+
+/usr/local/fsl/bin/flirt -o A_halfwayto_B -applyisoxfm 1 -paddingsize 0 -init A_halfwayto_B.mat -ref A -in A
+/usr/local/fsl/bin/flirt -o B_halfwayto_A -applyisoxfm 1 -paddingsize 0 -init B_halfwayto_A.mat -ref A -in B
+/usr/local/fsl/bin/flirt -o A_halfwayto_B_mask -applyisoxfm 1 -paddingsize 0 -init A_halfwayto_B.mat -ref A -in A_brain_mask
+/usr/local/fsl/bin/flirt -o B_halfwayto_A_mask -applyisoxfm 1 -paddingsize 0 -init B_halfwayto_A.mat -ref A -in B_brain_mask
+/usr/local/fsl/bin/flirt -o A_halfwayto_B_valid_mask -applyisoxfm 1 -paddingsize 0 -init A_halfwayto_B.mat -ref A -in A_valid_mask_with_B
+reading and combining transformed masks
+final image dimensions = 200 200 176, voxel volume = 1mm^3, voxel area = 1mm^2
+dilating/eroding combined mask
+reading transformed images and applying mask
+saving image 1 to disk prior to segmentation
+/usr/local/fsl/bin/fast   A_halfwayto_B_brain > A_halfwayto_B_brain.vol 2>&1
+finding brain edges
+finding flow
+AREA  81903 mm^2
+VOLC  -3057 mm^3
+RATIO -0.0373247 mm
+PBVC  -0.617755 %
+
+finalPBVC -.8905725000 %

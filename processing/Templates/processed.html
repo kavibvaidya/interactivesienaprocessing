@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Processed documents</title>
+    <script type="text/javascript">
+        function postwith (to,p) {
+      var myForm = document.createElement("form");
+      myForm.method="post" ;
+      myForm.action = to ;
+
+      for (var k in p) {
+        var myInput = document.createElement("input") ;
+        myInput.setAttribute("name", k) ;
+        myInput.setAttribute("value", p[k]);
+        myForm.appendChild(myInput) ;
+      var myInput = document.createElement("input") ;
+      myInput.setAttribute("name","csrfmiddlewaretoken")
+      myInput.setAttribute("value", '{{csrf_token}}');
+      myForm.appendChild(myInput);
+
+      }
+      document.body.appendChild(myForm) ;
+      myForm.submit() ;
+      document.body.removeChild(myForm) ;
+    }
+      function displaybrain() {
+        var options = document.getElementById("options");
+        if (options.value != "placeholder") {
+            postwith("processed", {
+              folder: options.value,
+            })
+        }
+      }
+    </script>
+  </head>
+  <body>
+    {%csrf_token%}
+    <select onchange="displaybrain()" id="options">
+      <option value="placeholder"></option>
+      {% for folder in list %}
+        <option value="{{folder}}">{{folder}}</option>
+      {%endfor%}
+
+      </optgroup>
+    </select>
+
+  </body>
+</html>

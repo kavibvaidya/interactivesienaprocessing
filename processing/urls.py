@@ -6,5 +6,6 @@ app_name = "processing"
 
 urlpatterns =[
     path('', HomePage.as_view(), name="Homepage"),
-    path('updates', Updates.as_view(), name="Updates")
+    path("processed", Processed.as_view(), name="Processed"),
+    path('download', Download.as_view(), name="Download"),
 ]

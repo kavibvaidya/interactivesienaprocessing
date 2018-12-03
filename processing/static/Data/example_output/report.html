@@ -1,0 +1,52 @@
+<HTML><HEAD><link REL="stylesheet" TYPE="text/css" href="file:/usr/local/fsl/doc/fsl.css"><TITLE>FSL</TITLE></HEAD><BODY><hr><TABLE BORDER=0 WIDTH="100%"><TR><TD ALIGN=CENTER><H1>SIENA Report</H1>siena ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20111116230534187_31_S129819_I267174.nii ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20160215163821416_41_S209455_I403626.nii -o example_output<TD ALIGN=RIGHT><a href="/usr/local/fsl/doc/index.html"><IMG BORDER=0 SRC="/usr/local/fsl/doc//images/fsl-logo.jpg"></a></TR></TABLE>
+<hr><p><b>BET brain extraction results</b><p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20111116230534187_31_S129819_I267174<br><IMG BORDER=0 SRC="A_bet.png"><p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20160215163821416_41_S209455_I403626<br><IMG BORDER=0 SRC="B_bet.png">
+<hr><p><b>FLIRT A-to-B registration results</b><p><IMG BORDER=0 SRC="A_and_B.gif">
+<hr><p><b>Field-of-view and standard space masking</b><br>Red shows the common field-of-view of the two timepoint images and the standard-space-based field-of-view masking (if this was run). Blue shows the brain masks, including standard-space-based brain masking (if this was run). Green shows the intersection of the two.<p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20111116230534187_31_S129819_I267174<br><IMG BORDER=0 SRC="A_valid_mask_with_B.png"><p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20160215163821416_41_S209455_I403626<br><IMG BORDER=0 SRC="B_valid_mask_with_A.png">
+<hr><p><b>FAST tissue segmentation</b><br>These images show the tissue segmentation used to find the brain/non-brain boundary. The exact segmentation of grey matter vs. white matter is not important.<p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20111116230534187_31_S129819_I267174<br><IMG BORDER=0 SRC="A_halfwayto_B_brain_seg.png"><p>ADNI_009_S_4324_MR_AXIAL_T2_STAR__br_raw_20160215163821416_41_S209455_I403626<br><IMG BORDER=0 SRC="B_halfwayto_A_brain_seg.png">
+<hr><p><b>Final brain edge movement image</b><p>atrophy <IMG SRC=".ramp2.gif"> 0 <IMG SRC=".ramp.gif"> "growth"<p><IMG BORDER=0 SRC="A_halfwayto_B_render.png"><p><b>Estimated PBVC: -.8905725000</b>
+
+<hr><p><b>SIENA Methods</b>
+
+<p>Two-timepoint percentage brain volume change was estimated with
+SIENA [Smith 2001, Smith 2002], part of FSL [Smith 2004]. SIENA starts
+by extracting brain and skull images from the two-timepoint whole-head
+input data [Smith 2002b]. The two brain images are then aligned to
+each other [Jenkinson 2001, Jenkinson 2002] (using the skull images to
+constrain the registration scaling); both brain images are resampled
+into the space halfway between the two. Next, tissue-type segmentation
+is carried out [Zhang 2001] in order to find brain/non-brain edge
+points, and then perpendicular edge displacement (between the two
+timepoints) is estimated at these edge points. Finally, the mean edge
+displacement is converted into a (global) estimate of percentage brain
+volume change between the two timepoints.
+
+<font size=-1><em>
+<P>[Smith 2001] S.M. Smith, N.&nbsp;De&nbsp;Stefano, M.&nbsp;Jenkinson, and P.M. Matthews.
+<BR>&nbsp;&nbsp;&nbsp;Normalised accurate measurement of longitudinal brain change.
+<BR>&nbsp;&nbsp;&nbsp;Journal of Computer Assisted Tomography, 25(3):466-475, May/June 2001.
+
+<P>[Smith 2002] S.M. Smith, Y.&nbsp;Zhang, M.&nbsp;Jenkinson, J.&nbsp;Chen, P.M. Matthews, A.&nbsp;Federico, and N.&nbsp;De&nbsp;Stefano.
+<BR>&nbsp;&nbsp;&nbsp;Accurate, robust and automated longitudinal and cross-sectional brain change analysis.
+<BR>&nbsp;&nbsp;&nbsp;NeuroImage, 17(1):479-489, 2002.
+
+<P>[Smith 2004] S.M. Smith, M.&nbsp;Jenkinson, M.W. Woolrich, C.F. Beckmann, T.E.J. Behrens, H.&nbsp;Johansen-Berg, P.R. Bannister, M.&nbsp;De&nbsp;Luca, I.&nbsp;Drobnjak, D.E. Flitney, R.&nbsp;Niazy, J.&nbsp;Saunders, J.&nbsp;Vickers, Y.&nbsp;Zhang, N.&nbsp;De&nbsp;Stefano, J.M. Brady, and P.M. Matthews.
+<BR>&nbsp;&nbsp;&nbsp;Advances in functional and structural MR image analysis and
+  implementation as FSL.
+<BR>&nbsp;&nbsp;&nbsp;NeuroImage, 23(S1):208-219, 2004.
+
+<P>[Smith 2002b] S.M. Smith.
+<BR>&nbsp;&nbsp;&nbsp;Fast robust automated brain extraction.
+<BR>&nbsp;&nbsp;&nbsp;Human Brain Mapping, 17(3):143-155, November 2002.
+
+<P>[Jenkinson 2001] M.&nbsp;Jenkinson and S.M. Smith.
+<BR>&nbsp;&nbsp;&nbsp;A global optimisation method for robust affine registration of brain images.
+<BR>&nbsp;&nbsp;&nbsp;Medical Image Analysis, 5(2):143-156, June 2001.
+
+<P>[Jenkinson 2002] M.&nbsp;Jenkinson, P.R. Bannister, J.M. Brady, and S.M. Smith.
+<BR>&nbsp;&nbsp;&nbsp;Improved optimisation for the robust and accurate linear registration and motion correction of brain images.
+<BR>&nbsp;&nbsp;&nbsp;NeuroImage, 17(2):825-841, 2002.
+
+<P>[Zhang 2001] Y.&nbsp;Zhang, M.&nbsp;Brady, and S.&nbsp;Smith.
+<BR>&nbsp;&nbsp;&nbsp;Segmentation of brain MR images through a hidden Markov random field model and the expectation maximization algorithm.
+<BR>&nbsp;&nbsp;&nbsp;IEEE Trans. on Medical Imaging, 20(1):45-57, 2001.
+
